@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Слайд-шоу</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black; /* На всякий случай фон черный */
+        }
+        img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain; /* Изображения сохраняют пропорции */
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <img src="1.png" class="active" id="slide">
+    <img src="2.png" id="slide">
+    <img src="3.png" id="slide">
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll("img");
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove("active");
+            currentSlide = (index + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add("active");
+        }
+
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+    </script>
+</body>
+</html>
